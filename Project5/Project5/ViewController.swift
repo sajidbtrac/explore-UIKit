@@ -11,7 +11,7 @@ class ViewController: UITableViewController {
     
     var allWords = [String]()
     var usedWords = [String]()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -61,38 +61,44 @@ class ViewController: UITableViewController {
     
     func submit(_ answer: String) {
         let lowercasedAnswer = answer.lowercased()
-//        if isPossible(word: lowercasedAnswer) && isOriginal(word: lowercasedAnswer) && isReal(word: lowercasedAnswer) {
-//            //insert at top
-//            usedWords.insert(answer, at: 0)
-//            let indexPath = IndexPath(row: 0, section: 0)
-//            tableView.insertRows(at: [indexPath], with: .automatic)
-//        }
+        //        if isPossible(word: lowercasedAnswer) && isOriginal(word: lowercasedAnswer) && isReal(word: lowercasedAnswer) {
+        //            //insert at top
+        //            usedWords.insert(answer, at: 0)
+        //            let indexPath = IndexPath(row: 0, section: 0)
+        //            tableView.insertRows(at: [indexPath], with: .automatic)
+        //        }
         
         let errorTitle: String
         let errorMessage: String
         
-        if isPossible(word: lowercasedAnswer) {
-            if isOriginal(word: lowercasedAnswer) {
-                if isReal(word: lowercasedAnswer) {
-                    usedWords.insert(answer, at: 0)
-
-                    let indexPath = IndexPath(row: 0, section: 0)
-                    tableView.insertRows(at: [indexPath], with: .automatic)
-
-                    return
+        if isCorrectLenght(word: lowercasedAnswer) {
+            if isPossible(word: lowercasedAnswer) {
+                if isOriginal(word: lowercasedAnswer) {
+                    if isReal(word: lowercasedAnswer) {
+                        usedWords.insert(lowercasedAnswer, at: 0)
+                        
+                        let indexPath = IndexPath(row: 0, section: 0)
+                        tableView.insertRows(at: [indexPath], with: .automatic)
+                        
+                        return
+                    } else {
+                        errorTitle = "Word not recognised"
+                        errorMessage = "You can't just make them up, you know!"
+                    }
                 } else {
-                    errorTitle = "Word not recognised"
-                    errorMessage = "You can't just make them up, you know!"
+                    errorTitle = "Word used already"
+                    errorMessage = "Be more original!"
                 }
             } else {
-                errorTitle = "Word used already"
-                errorMessage = "Be more original!"
+                guard let title = title?.lowercased() else { return }
+                errorTitle = "Word not possible"
+                errorMessage = "You can't spell that word from \(title)"
             }
         } else {
-            guard let title = title?.lowercased() else { return }
-            errorTitle = "Word not possible"
-            errorMessage = "You can't spell that word from \(title)"
+            errorTitle = "Word is too short"
+            errorMessage = "You need to use at least 3 letter!"
         }
+        
         
         let ac = UIAlertController(title: errorTitle, message: errorMessage, preferredStyle: .alert)
         let action = UIAlertAction(title: "Ok", style: .default)
@@ -100,6 +106,9 @@ class ViewController: UITableViewController {
         present(ac, animated: true)
     }
     
+    func isCorrectLenght(word: String) -> Bool {
+        return word.count > 2
+    }
     func isPossible(word: String) -> Bool {
         guard var temWord = title?.lowercased() else { return false }
         for letter in word {
