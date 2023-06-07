@@ -58,7 +58,25 @@ class ViewController: UITableViewController {
     }
     
     func submit(_ answer: String) {
-        
+        let lowercasedAnswer = answer.lowercased()
+        if isPossible(word: lowercasedAnswer) && isOriginal(word: lowercasedAnswer) && isReal(word: lowercasedAnswer) {
+            //insert at top
+            usedWords.insert(answer, at: 0)
+            let indexPath = IndexPath(row: 0, section: 0)
+            tableView.insertRows(at: [indexPath], with: .automatic)
+        }
+    }
+    
+    func isPossible(word: String) -> Bool {
+        return true
+    }
+    
+    func isOriginal(word: String) -> Bool {
+        return true
+    }
+    
+    func isReal(word: String) -> Bool {
+        return true
     }
 }
 
