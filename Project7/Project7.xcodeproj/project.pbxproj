@@ -13,6 +13,8 @@
 		5B532AC52A31DE7D001EA6E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B532AC32A31DE7D001EA6E0 /* Main.storyboard */; };
 		5B532AC72A31DE80001EA6E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B532AC62A31DE80001EA6E0 /* Assets.xcassets */; };
 		5B532ACA2A31DE80001EA6E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B532AC82A31DE80001EA6E0 /* LaunchScreen.storyboard */; };
+		5B532AD32A31E554001EA6E0 /* Petition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B532AD22A31E554001EA6E0 /* Petition.swift */; };
+		5B532AD52A31E55E001EA6E0 /* Petitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B532AD42A31E55E001EA6E0 /* Petitions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		5B532AC62A31DE80001EA6E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5B532AC92A31DE80001EA6E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5B532ACB2A31DE80001EA6E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5B532AD22A31E554001EA6E0 /* Petition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Petition.swift; sourceTree = "<group>"; };
+		5B532AD42A31E55E001EA6E0 /* Petitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Petitions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,7 @@
 		5B532ABC2A31DE7D001EA6E0 /* Project7 */ = {
 			isa = PBXGroup;
 			children = (
+				5B532AD12A31E541001EA6E0 /* Models */,
 				5B532ABD2A31DE7D001EA6E0 /* AppDelegate.swift */,
 				5B532ABF2A31DE7D001EA6E0 /* SceneDelegate.swift */,
 				5B532AC12A31DE7D001EA6E0 /* ViewController.swift */,
@@ -65,6 +70,15 @@
 				5B532ACB2A31DE80001EA6E0 /* Info.plist */,
 			);
 			path = Project7;
+			sourceTree = "<group>";
+		};
+		5B532AD12A31E541001EA6E0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5B532AD22A31E554001EA6E0 /* Petition.swift */,
+				5B532AD42A31E55E001EA6E0 /* Petitions.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,8 +153,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B532AC22A31DE7D001EA6E0 /* ViewController.swift in Sources */,
+				5B532AD32A31E554001EA6E0 /* Petition.swift in Sources */,
 				5B532ABE2A31DE7D001EA6E0 /* AppDelegate.swift in Sources */,
 				5B532AC02A31DE7D001EA6E0 /* SceneDelegate.swift in Sources */,
+				5B532AD52A31E55E001EA6E0 /* Petitions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
