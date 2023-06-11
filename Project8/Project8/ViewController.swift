@@ -28,7 +28,7 @@ class ViewController: UIViewController {
         scoreLabel = UILabel()
         scoreLabel.translatesAutoresizingMaskIntoConstraints = false
         scoreLabel.textAlignment = .right
-        scoreLabel.text = "Score: 0"
+        scoreLabel.text = "Score: \(score)"
         view.addSubview(scoreLabel)
         
         //MARK: Clues Label
@@ -129,20 +129,74 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        loadLavel()
+        loadLevel()
     }
 
     @objc func letterTapped(_ sender: UIButton) {
-        
-    }
-    @objc func submitTapped(_ sender: UIButton) {
-        
-    }
-    @objc func clearTapped(_ sender: UIButton) {
-        
+        guard let buttonTitle = sender.titleLabel?.text else { return }
+        currentAnswer.text = currentAnswer.text?.appending(buttonTitle)
+        activatedButtons.append(sender)
+        sender.isHidden = true
     }
     
-    func loadLavel() {
+    @objc func submitTapped(_ sender: UIButton) {
+        guard let answerText = currentAnswer.text else { return }
+
+        if let solutionPosition = solutions.firstIndex(of: answerText) {
+            activatedButtons.removeAll()
+
+            var splitAnswers = answersLabel.text?.components(separatedBy: "\n")
+            splitAnswers?[solutionPosition] = answerText
+            answersLabel.text = splitAnswers?.joined(separator: "\n")
+
+            currentAnswer.text = ""
+            score += 1
+            scoreLabel.text = "Score: \(score)"
+
+            if score % 7 == 0 {
+                let ac = UIAlertController(title: "Well done!", message: "Are you ready for the next level?", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "Let's go!", style: .default, handler: levelUp))
+                present(ac, animated: true)
+            }
+        } else {
+            let ac = UIAlertController(title: "Wrong Answer!", message: "Try again", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Ok", style: .default, handler: tryAgain))
+            present(ac, animated: true)
+        }
+    }
+    
+    @objc func clearTapped(_ sender: UIButton) {
+        currentAnswer.text = ""
+        
+        for button in activatedButtons {
+            button.isHidden = false
+        }
+        
+        activatedButtons.removeAll()
+    }
+    
+    func tryAgain(action: UIAlertAction) {
+        currentAnswer.text = ""
+        
+        for button in activatedButtons {
+            button.isHidden = false
+        }
+        
+        activatedButtons.removeAll()
+    }
+    
+    func levelUp(action: UIAlertAction) {
+        level += 1
+        solutions.removeAll(keepingCapacity: true)
+
+        loadLevel()
+
+        for btn in letterButtons {
+            btn.isHidden = false
+        }
+    }
+    
+    func loadLevel() {
         var clueString = ""
         var solutionsString = ""
         var letterBits = [String]()
@@ -157,10 +211,10 @@ class ViewController: UIViewController {
                     let answer = parts[0]
                     let clue = parts[1]
                     
-                    clueString = "\(index + 1). \(clue)\n"
+                    clueString += "\(index + 1). \(clue)\n"
                     
                     let solutionWord = answer.replacingOccurrences(of: "|", with: "")
-                    solutionsString = "\(solutionWord.count) letters\n"
+                    solutionsString += "\(solutionWord.count) letters\n"
                     solutions.append(solutionWord)
                     
                     let bits = answer.components(separatedBy: "|")
