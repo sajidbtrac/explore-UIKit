@@ -79,6 +79,9 @@ class ViewController: UIViewController {
         //MARK: view for contain all buttons of answers
         let buttonsView = UIView()
         buttonsView.translatesAutoresizingMaskIntoConstraints = false
+        buttonsView.layer.cornerRadius = 10
+        buttonsView.layer.borderWidth = 1
+        buttonsView.layer.borderColor = UIColor.gray.cgColor
         view.addSubview(buttonsView)
         
         let buttonWidth = 150
@@ -163,7 +166,7 @@ class ViewController: UIViewController {
             }
         } else {
             let ac = UIAlertController(title: "Wrong Answer!", message: "Try again", preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "Ok", style: .default, handler: tryAgain))
+            ac.addAction(UIAlertAction(title: "Ok", style: .default, handler: wrongAnswer))
             present(ac, animated: true)
         }
     }
@@ -178,7 +181,10 @@ class ViewController: UIViewController {
         activatedButtons.removeAll()
     }
     
-    func tryAgain(action: UIAlertAction) {
+    func wrongAnswer(action: UIAlertAction) {
+        if score > 0 {
+            score -= 1
+        }
         currentAnswer.text = ""
         
         for button in activatedButtons {
