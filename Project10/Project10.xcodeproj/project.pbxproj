@@ -13,6 +13,7 @@
 		5BE3D0692A370D3D00B725F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BE3D0672A370D3D00B725F4 /* Main.storyboard */; };
 		5BE3D06B2A370D3F00B725F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BE3D06A2A370D3F00B725F4 /* Assets.xcassets */; };
 		5BE3D06E2A370D3F00B725F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BE3D06C2A370D3F00B725F4 /* LaunchScreen.storyboard */; };
+		5BE3D0762A37101300B725F4 /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3D0752A37101300B725F4 /* PersonCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		5BE3D06A2A370D3F00B725F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5BE3D06D2A370D3F00B725F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5BE3D06F2A370D3F00B725F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5BE3D0752A37101300B725F4 /* PersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				5BE3D0632A370D3D00B725F4 /* SceneDelegate.swift */,
 				5BE3D0652A370D3D00B725F4 /* ViewController.swift */,
 				5BE3D0672A370D3D00B725F4 /* Main.storyboard */,
+				5BE3D0752A37101300B725F4 /* PersonCell.swift */,
 				5BE3D06A2A370D3F00B725F4 /* Assets.xcassets */,
 				5BE3D06C2A370D3F00B725F4 /* LaunchScreen.storyboard */,
 				5BE3D06F2A370D3F00B725F4 /* Info.plist */,
@@ -140,6 +143,7 @@
 			files = (
 				5BE3D0662A370D3D00B725F4 /* ViewController.swift in Sources */,
 				5BE3D0622A370D3D00B725F4 /* AppDelegate.swift in Sources */,
+				5BE3D0762A37101300B725F4 /* PersonCell.swift in Sources */,
 				5BE3D0642A370D3D00B725F4 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
