@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B6404822A371DC2004E0DC8 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6404812A371DC2004E0DC8 /* Person.swift */; };
 		5BE3D0622A370D3D00B725F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3D0612A370D3D00B725F4 /* AppDelegate.swift */; };
 		5BE3D0642A370D3D00B725F4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3D0632A370D3D00B725F4 /* SceneDelegate.swift */; };
 		5BE3D0662A370D3D00B725F4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3D0652A370D3D00B725F4 /* ViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5B6404812A371DC2004E0DC8 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		5BE3D05E2A370D3D00B725F4 /* Project10.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project10.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BE3D0612A370D3D00B725F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BE3D0632A370D3D00B725F4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 		5BE3D0602A370D3D00B725F4 /* Project10 */ = {
 			isa = PBXGroup;
 			children = (
+				5B6404812A371DC2004E0DC8 /* Person.swift */,
 				5BE3D0612A370D3D00B725F4 /* AppDelegate.swift */,
 				5BE3D0632A370D3D00B725F4 /* SceneDelegate.swift */,
 				5BE3D0652A370D3D00B725F4 /* ViewController.swift */,
@@ -141,6 +144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B6404822A371DC2004E0DC8 /* Person.swift in Sources */,
 				5BE3D0662A370D3D00B725F4 /* ViewController.swift in Sources */,
 				5BE3D0622A370D3D00B725F4 /* AppDelegate.swift in Sources */,
 				5BE3D0762A37101300B725F4 /* PersonCell.swift in Sources */,
