@@ -15,6 +15,35 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: .add, style: .plain, target: self, action: #selector(addNewPerson))
+        
+        let defaults = UserDefaults.standard
+        if let savedPeople = defaults.object(forKey: "people") as? Data {
+            //            if let decodedPeople = try? NSKeyedUnarchiver.unarchivedObject(ofClass: Person.self, from: savedPeople) {
+            //
+            
+//            if let decodedPeople = try? NSKeyedUnarchiver.unarchivedObject(ofClasses: [people.self], from: savedPeople) as? [Person] {
+//                print("ekhane")
+//                people = decodedPeople
+//            } else {
+//                print("okhane")
+//            }
+            
+//            if let decodedPeople = try? NSKeyedUnarchiver.unarchivedObject(ofClasses: [NSArray.self, Person.self], from: savedPeople) as? [Person] {
+//                people = decodedPeople
+//            }
+            
+//            if let decodedPeople = try? NSKeyedUnarchiver.unarchivedArrayOfObjects(ofClasses: [Person.self], from: savedPeople) as? [Person] {
+//                people = decodedPeople
+//                print("b")
+//            } else {
+//                print("a")
+//            }
+            
+            if let decodedPeople = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(savedPeople) as? [Person] {
+                people = decodedPeople
+            }
+            //final note: unarchiveTopLevelObjectWithData depicated, but alternative ta diye kaj kortesena. need to solvein future. 
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -63,6 +92,7 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
         
         let person = Person(name: "Unknown", image: imageName)
         people.append(person)
+        saveData()
         collectionView.reloadData()
         
         dismiss(animated: true) //dismiss the image picker
@@ -84,6 +114,7 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
             renameAc.addAction(UIAlertAction(title: "Add", style: .default){ _ in
                 guard let newName = renameAc.textFields?[0].text else { return }
                 person.name = newName
+                self?.saveData()
                 collectionView.reloadItems(at: [indexPath])
             })
             renameAc.addAction(UIAlertAction(title: "Cancel", style: .cancel))
@@ -94,5 +125,12 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
             collectionView.reloadData()
         })
         present(ac, animated: true)
+    }
+    
+    func saveData() {
+        if let savedData = try? NSKeyedArchiver.archivedData(withRootObject: people, requiringSecureCoding: false) {
+            let defaults = UserDefaults.standard
+            defaults.set(savedData, forKey: "people")
+        }
     }
 }
