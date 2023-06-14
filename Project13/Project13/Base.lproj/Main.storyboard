@@ -60,7 +60,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2CW-8q-nyO">
                                 <rect key="frame" x="15.999999999999993" y="754" width="115.33333333333331" height="44"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Change Filter" titleAlignment="leading">
+                                <buttonConfiguration key="configuration" style="plain" title="Change Filter">
                                     <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
                                 </buttonConfiguration>
                                 <connections>
