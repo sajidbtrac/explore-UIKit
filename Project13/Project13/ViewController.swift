@@ -77,7 +77,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func save(_ sender: Any) {
-        
+        guard let image = imgView.image else {return }
+        UIImageWriteToSavedPhotosAlbum(image, self, #selector(saveImage), nil)
     }
     
     @IBAction func intensityChanged(_ sender: Any) {
@@ -102,6 +103,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         if let cgImage = context.createCGImage(outputImage, from: outputImage.extent) {
             let processedImage = UIImage(cgImage: cgImage)
             imgView.image = processedImage
+        }
+    }
+    
+    @objc func saveImage(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            let ac = UIAlertController(title: "Save Error", message: error.localizedDescription, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Ok", style: .default))
+            present(ac, animated: true)
+        } else {
+            let ac = UIAlertController(title: "Saved!", message: "Congratulations, Saving photo is successfull.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Ok", style: .default))
+            present(ac, animated: true)
         }
     }
 }
