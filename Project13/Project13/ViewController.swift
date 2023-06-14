@@ -11,6 +11,7 @@ import CoreImage
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var intensitySlider: UISlider!
+    @IBOutlet weak var changeFilterButton: UIButton!
     var currentImage: UIImage!
     
     var context: CIContext!
@@ -25,6 +26,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         context = CIContext()
         currentFilter = CIFilter(name: "CISepiaTone")
+        changeFilterButton.titleLabel?.text = currentFilter.name
     }
     
     @objc func importPicture() {
@@ -69,6 +71,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         guard let actionTitle = action.title else { return }
         
         currentFilter = CIFilter(name: actionTitle)
+        changeFilterButton.titleLabel?.text = currentFilter.name
         
         let beginImage = CIImage(image: currentImage)
         currentFilter.setValue(beginImage, forKey: kCIInputImageKey)
@@ -77,7 +80,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func save(_ sender: Any) {
-        guard let image = imgView.image else {return }
+        guard let image = imgView.image else {
+            let ac = UIAlertController(title: "No Image Selected", message: "First add an image to apply filter, then try to save", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Ok", style: .default))
+            present(ac, animated: true)
+            return
+        }
         UIImageWriteToSavedPhotosAlbum(image, self, #selector(saveImage), nil)
     }
     
