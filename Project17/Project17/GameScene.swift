@@ -12,6 +12,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var starField: SKEmitterNode!
     var player: SKSpriteNode!
     var scoreLabel: SKLabelNode!
+    var possibleEnemies: [String] = ["ball", "hammer", "tv"]
+    var gameTimer: Timer?
+    var isGameOver = false
     
     var score = 0 {
         didSet {
@@ -44,9 +47,37 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //disabel gravety, cause we are in Space
         physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         physicsWorld.contactDelegate = self
+        
+        gameTimer = Timer.scheduledTimer(timeInterval: 0.35, target: self, selector: #selector(createEnemy), userInfo: nil, repeats: true)
+    }
+    
+    @objc func createEnemy() {
+        guard let enemy = possibleEnemies.randomElement() else {
+            print("fg")
+            return }
+        
+        let sprite = SKSpriteNode(imageNamed: enemy)
+        sprite.position = CGPoint(x: 1200, y: Int.random(in: 50..<736))
+        addChild(sprite)
+        
+        sprite.physicsBody = SKPhysicsBody(texture: sprite.texture!, size: sprite.size)
+        sprite.physicsBody?.categoryBitMask = 1 // same category as player
+        sprite.physicsBody?.velocity = CGVector(dx: -500, dy: 0) // pushing left with very heard velocity
+        sprite.physicsBody?.angularVelocity = 5 // spin
+        sprite.physicsBody?.linearDamping = 0 // how fast things slow down over time (never stop/ never slow down)
+        sprite.physicsBody?.angularDamping = 0 //never stom spining
     }
 
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+        for node in children {
+            if node.position.x < -300 {
+                node.removeFromParent()
+            }
+        }
+        
+        if !isGameOver {
+            score += 1
+        }
     }
 }
