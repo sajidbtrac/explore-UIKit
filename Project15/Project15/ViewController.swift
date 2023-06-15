@@ -26,6 +26,8 @@ class ViewController: UIViewController {
         currentAnimation += 1
         if currentAnimation > 7 { currentAnimation = 0}
         
+        //scale, rotation, position, background color, alpha, and more.
+        
 //        UIView.animate(withDuration: 1, delay: 0) {
         UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 5, animations: {
             switch self.currentAnimation {
