@@ -14,6 +14,7 @@
 		5BD2DCC12A3AE66600349453 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BD2DCC02A3AE66600349453 /* Assets.xcassets */; };
 		5BD2DCC42A3AE66600349453 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BD2DCC22A3AE66600349453 /* LaunchScreen.storyboard */; };
 		5BD2DCCC2A3AF3A700349453 /* Capital.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD2DCCB2A3AF3A700349453 /* Capital.swift */; };
+		5BD2DCCE2A3B03FB00349453 /* DetailWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD2DCCD2A3B03FB00349453 /* DetailWebView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		5BD2DCC32A3AE66600349453 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5BD2DCC52A3AE66600349453 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5BD2DCCB2A3AF3A700349453 /* Capital.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Capital.swift; sourceTree = "<group>"; };
+		5BD2DCCD2A3B03FB00349453 /* DetailWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailWebView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				5BD2DCB92A3AE66100349453 /* SceneDelegate.swift */,
 				5BD2DCBB2A3AE66100349453 /* ViewController.swift */,
 				5BD2DCBD2A3AE66100349453 /* Main.storyboard */,
+				5BD2DCCD2A3B03FB00349453 /* DetailWebView.swift */,
 				5BD2DCC02A3AE66600349453 /* Assets.xcassets */,
 				5BD2DCC22A3AE66600349453 /* LaunchScreen.storyboard */,
 				5BD2DCC52A3AE66600349453 /* Info.plist */,
@@ -141,6 +144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BD2DCCE2A3B03FB00349453 /* DetailWebView.swift in Sources */,
 				5BD2DCBC2A3AE66100349453 /* ViewController.swift in Sources */,
 				5BD2DCB82A3AE66100349453 /* AppDelegate.swift in Sources */,
 				5BD2DCCC2A3AF3A700349453 /* Capital.swift in Sources */,

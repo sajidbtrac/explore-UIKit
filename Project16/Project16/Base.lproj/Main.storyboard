@@ -43,6 +43,40 @@
             </objects>
             <point key="canvasLocation" x="857.25190839694653" y="3.5211267605633805"/>
         </scene>
+        <!--Detail Web View-->
+        <scene sceneID="CKJ-rf-gAg">
+            <objects>
+                <viewController storyboardIdentifier="Detail" id="0Ka-8Y-ejJ" customClass="DetailWebView" customModule="Project16" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="73R-OY-VEx">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" restorationIdentifier="Detail" translatesAutoresizingMaskIntoConstraints="NO" id="jdp-xV-8Oq">
+                                <rect key="frame" x="0.0" y="59" width="393" height="734"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="0GA-CZ-P8T"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="jdp-xV-8Oq" firstAttribute="centerX" secondItem="73R-OY-VEx" secondAttribute="centerX" id="9ch-Zv-FD2"/>
+                            <constraint firstItem="jdp-xV-8Oq" firstAttribute="top" secondItem="73R-OY-VEx" secondAttribute="topMargin" id="MWq-YP-9Nb"/>
+                            <constraint firstItem="jdp-xV-8Oq" firstAttribute="centerY" secondItem="73R-OY-VEx" secondAttribute="centerY" id="bzn-Jo-81G"/>
+                            <constraint firstItem="jdp-xV-8Oq" firstAttribute="leading" secondItem="0GA-CZ-P8T" secondAttribute="leading" id="eB9-0I-oIn"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="detailWebView" destination="jdp-xV-8Oq" id="X8j-IQ-rjn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZGv-PF-IBL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1684.7328244274809" y="3.5211267605633805"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="bbT-RV-nHd">
             <objects>

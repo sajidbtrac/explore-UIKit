@@ -14,11 +14,11 @@ class ViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        let london = Capital(title: "London", coordinate: CLLocationCoordinate2D(latitude: 51.5072222, longitude: -0.1275), info: "Home of 2012 Summer Olympics")
-        let oslo = Capital(title: "Oslo", coordinate: CLLocationCoordinate2D(latitude: 59.95, longitude: 10.75), info: "Founded over a thousand years ago.")
-        let paris = Capital(title: "Paris", coordinate: CLLocationCoordinate2D(latitude: 48.8567, longitude: 2.3508), info: "Often called the City of Light.")
-        let rome = Capital(title: "Rome", coordinate: CLLocationCoordinate2D(latitude: 41.9, longitude: 12.5), info: "Has a whole country inside it.")
-        let washington = Capital(title: "Washington DC", coordinate: CLLocationCoordinate2D(latitude: 38.895111, longitude: -77.036667), info: "Named after George himself.")
+        let london = Capital(title: "London", coordinate: CLLocationCoordinate2D(latitude: 51.5072222, longitude: -0.1275), info: "Home of 2012 Summer Olympics", WikipediaURLString: "https://en.wikipedia.org/wiki/London")
+        let oslo = Capital(title: "Oslo", coordinate: CLLocationCoordinate2D(latitude: 59.95, longitude: 10.75), info: "Founded over a thousand years ago.", WikipediaURLString: "https://en.wikipedia.org/wiki/Oslo")
+        let paris = Capital(title: "Paris", coordinate: CLLocationCoordinate2D(latitude: 48.8567, longitude: 2.3508), info: "Often called the City of Light.", WikipediaURLString: "https://en.wikipedia.org/wiki/Paris")
+        let rome = Capital(title: "Rome", coordinate: CLLocationCoordinate2D(latitude: 41.9, longitude: 12.5), info: "Has a whole country inside it.", WikipediaURLString: "https://en.wikipedia.org/wiki/Rome")
+        let washington = Capital(title: "Washington DC", coordinate: CLLocationCoordinate2D(latitude: 38.895111, longitude: -77.036667), info: "Named after George himself.", WikipediaURLString: "https://en.wikipedia.org/wiki/Washington_(state)")
         
         //        mapView.addAnnotation(london)
         //        mapView.addAnnotation(oslo)
@@ -58,8 +58,17 @@ class ViewController: UIViewController, MKMapViewDelegate {
         
         let ac = UIAlertController(title: placeName, message: placeInfo, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .default))
+        ac.addAction(UIAlertAction(title: "Wikipedia", style: .default) { _ in
+            self.showWebView(url: capital.WikipediaURLString)
+        })
         present(ac, animated: true)
     }
+    
+    func showWebView(url: String) {
+        guard let detailWebVC = storyboard?.instantiateViewController(identifier: "Detail") as? DetailWebView else { return }
+        
+        detailWebVC.url = url
+        navigationController?.pushViewController(detailWebVC, animated: true)    }
     
     @objc func changeMapType() {
         let ac = UIAlertController(title: "Pick MapType", message: nil, preferredStyle: .actionSheet)
