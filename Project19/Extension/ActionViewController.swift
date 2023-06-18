@@ -11,10 +11,15 @@ import UniformTypeIdentifiers
 
 class ActionViewController: UIViewController {
 
-    @IBOutlet weak var imageView: UIImageView!
-
+    @IBOutlet weak var script: UITextView!
+    
+    var pageTitle: String?
+    var pageURL: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
         
         if let inputItem = extensionContext?.inputItems.first as? NSExtensionItem {
             if let itemProvider = inputItem.attachments?.first {
@@ -23,6 +28,13 @@ class ActionViewController: UIViewController {
                     guard let itemDictionary = dict as? NSDictionary else { return }
                     guard let javascriptValues = itemDictionary[NSExtensionJavaScriptPreprocessingResultsKey] as? NSDictionary else { return }
                     print(javascriptValues)
+                    self?.pageTitle = javascriptValues["title"] as? String ?? ""
+                    self?.pageURL = javascriptValues["URL"] as? String ?? ""
+                    
+                    DispatchQueue.main.async {
+                        self?.title = self?.pageTitle
+                        self?.script.text = self?.pageURL
+                    }
                 }
             }
         }
@@ -31,7 +43,12 @@ class ActionViewController: UIViewController {
     @IBAction func done() {
         // Return any edited content to the host app.
         // This template doesn't do anything, so we just echo the passed in items.
-        self.extensionContext!.completeRequest(returningItems: self.extensionContext!.inputItems, completionHandler: nil)
-    }
+        let item = NSExtensionItem()
+        let argument: NSDictionary = ["customJavaScript": script.text ?? ""]
+        let webDictionary: NSDictionary = [NSExtensionJavaScriptFinalizeArgumentKey: argument]
+        let customJavaScript = NSItemProvider(item: webDictionary, typeIdentifier: kUTTypePropertyList as String)
+        item.attachments = [customJavaScript]
 
+        extensionContext?.completeRequest(returningItems: [item])
+    }
 }

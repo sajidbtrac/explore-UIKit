@@ -9,9 +9,9 @@ run: function(parameters) {
 },
 
 finalize: function(parameters) {
-
+    var customJavaScript = parameters["customJavaScript"];
+    eval(customJavaScript);
 }
-
 };
 
 var ExtensionPreprocessingJS = new Action

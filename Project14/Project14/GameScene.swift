@@ -91,6 +91,7 @@ class GameScene: SKScene {
             
             let gameOver = SKSpriteNode(imageNamed: "gameOver")
             gameOver.position = CGPoint(x: 512, y: 384)
+            gameOver.zPosition = 2
             addChild(gameOver)
             
             return
