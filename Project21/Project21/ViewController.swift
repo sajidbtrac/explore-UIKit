@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UNUserNotificationCenterDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,9 +18,8 @@ class ViewController: UIViewController {
         
     }
 
+    //request permission to to send local notifications
     @objc func registerLocal() {
-        //request permission to to send local notifications
-        
         let center = UNUserNotificationCenter.current()
         center.requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
             if granted {
@@ -31,8 +30,9 @@ class ViewController: UIViewController {
         }
     }
     
+    //configure all the data needed to schedule a notification
     @objc func scheduleLocal() {
-        //configure all the data needed to schedule a notificatio
+        registerCategories()
         
         let center = UNUserNotificationCenter.current()
         
@@ -60,6 +60,35 @@ class ViewController: UIViewController {
         
         // add the notification request
         center.add(request)
+    }
+    
+    func registerCategories() {
+        let center = UNUserNotificationCenter.current()
+        center.delegate = self
+        
+        let show = UNNotificationAction(identifier: "show", title: "Tell me more..", options: .foreground)
+        let category = UNNotificationCategory(identifier: "alarm", actions: [show], intentIdentifiers: [])
+        
+        center.setNotificationCategories([category])
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        let userInfo = response.notification.request.content.userInfo
+        
+        if let customData = userInfo["customizeJkonoData"] as? String {
+            print("Custom data recived: \(customData)")
+            
+            switch response.actionIdentifier {
+            case UNNotificationDefaultActionIdentifier:
+                // the user swiped to unlock
+                print("Default identifier")
+            case "show":
+                print("show more info")
+            default:
+                break
+            }
+        }
+        completionHandler()
     }
 }
 
