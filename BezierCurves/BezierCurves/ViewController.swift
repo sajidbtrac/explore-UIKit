@@ -15,6 +15,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         boardingpassView.isHidden = true
+        planeView.isHidden = true
 
     }
     @IBAction func showBoardingPass(_ sender: Any) {
@@ -87,5 +88,39 @@ class BoardingPassView: UIView {
 }
 
 class PlaneView: UIView {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupView()
+    }
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupView()
+    }
     
+    func setupView() {
+        let path = getPath()
+        
+        let shape = CAShapeLayer()
+        shape.path = path.cgPath
+        shape.lineWidth = 2.0
+        shape.strokeColor = UIColor.gray.cgColor
+        shape.fillColor = UIColor.clear.cgColor
+        
+        self.layer.addSublayer(shape)
+    }
+    
+    func getPath() -> UIBezierPath {
+        let path = UIBezierPath()
+        
+        path.move(to: CGPoint(x: 230, y: 520))
+        
+        path.addLine(to: CGPoint(x: 70, y: 520))
+        path.addLine(to: CGPoint(x: 60, y: 250))
+        
+        path.addCurve(to: CGPoint(x: 240, y: 250), controlPoint1: CGPoint(x: 80, y: 0), controlPoint2: CGPoint(x: 230, y: 0))
+        
+        
+        path.close()
+        return path
+    }
 }
